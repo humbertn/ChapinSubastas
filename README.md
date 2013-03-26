@@ -1,10 +1,10 @@
 ChapinSubastas
 ==============
 
-Sitio de apostar port articulos a la venta. Utiliza Node.js, mongo, backbone.
+Sitio de apostar port articulos a la venta. Desarrollado durante el mes diciembre 2012 como proyecto del curso Sistemas Operativos 1. Utiliza Node.js, mongo, backbone.
 
-Crear el proyecto:
-  npm init
+crear el proyecto:
+	npm init
 	o
 	express -t ejs live-site
 

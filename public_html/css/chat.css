@@ -1,0 +1,19 @@
+div#chatroom {
+	display: block;
+	height: 300px;
+	border: 1px solid #999;
+	overflow: auto;
+	width: 100%;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+ul#chat_log {
+	list-style: none;
+	position: absolute;
+	bottom: 0px;
+}
+
+input#chat_box {
+	width: 99%;
+}

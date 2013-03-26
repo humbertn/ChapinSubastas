@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="shortcut icon" href="/favicon.ico">
+<title><%= titulo %> - Chapin Subastas</title>
+<% if (stylesheets) stylesheets.forEach(function(css){ %><link rel="stylesheet" href="<%- css%>"></link>
+<% }) %>
+</head>
+<body>
+	<div class="row-fluid">
+		<div class="span2">
+			<a href="/" ><img src="/img/quetzal.jpeg" class="img-polaroid" /></a>
+		</div>
+		<div class="span7">
+			<h1>Chapin Subastas</h1>
+			<small>TODO UN SUBASTON PEREZ!!!</small>
+		</div>
+	</div>
+<!-- <h1>Bienvenido a Chapin Subastas! <small>Creo que encontrar&aacute; lo que busca</small></h1> -->
+<%- body %>
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/js/client/hummingbird.js" ></script>
+<% scripts.forEach(function(js){ %><script src="<%- js%>"></script>
+<% }) %><script>HummingbirdTracker.track();</script></body>
+</html>

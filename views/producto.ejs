@@ -1,0 +1,66 @@
+	<input type="hidden" id="codprod" value="<%-codprod%>" />
+	<div class="container" >
+		<div class="alert alert-block alert-error fade in hide">
+			<a class="close" data-dismiss="alert" href="#">×</a>
+			<h4 class="alert-heading">Oh snap! You got an error!</h4>
+			<p>The server seems to be down :(</p>
+		</div>
+		<div class="alert alert-success fade in hide">
+			<h4 class="alert-heading">&Eacute;xito!</h4>
+			<span class="label label-success">En buena hora</span>
+			<p>Se ha aceptado su oferta :)</p>
+		</div>
+		
+		<div class="row-fluid" >
+			<div id="producto-view" class="span4">
+				<legend>Nombre producto aca</legend>
+				codigo producto: <span class="codprod  badge badge-success">codigo producto aca</span>
+				<img src="" class="img-polaroid"/>
+				<br>Descripci&oacuten: <blockquote><p class="lead">Descripcion aca</p></blockquote>
+				Fecha de publicaci&oacute;n <input type="datetime-local" readonly />
+				<!--<span class="date">fecha de publicacion aca</span>-->
+				<p><a class="btn btn-inverse" href="/">&laquo; Regresar</a></p>
+			</div>
+			
+			<div class="span4">
+				<legend>&Uacute;ltimas 5 Ofertas Mayores</legend>
+				<ol id="bids-view">
+					
+				</ol>
+				Total Ofertas: <span class="totalOfertas badge badge-info">Info</span>
+			</div>
+			
+			<div class="span4">
+				<div id="bid-view" class="input-prepend">
+					<legend>Haga su oferta</legend>
+					<span class="add-on">Tu Nombre</span>
+					<input type=text placeholder="Tu nombre." /><br>
+					
+					<span class="add-on">Q</span>
+					<input type=number min="0.25" max="300" placeholder="Ingrese un monto en Q." />
+					<button class="btn btn-primary" type="button">Go!</button>
+				</div>
+				<!-- Button to trigger modal -->
+				<a href="#myModal" role="button" class="btn btn-info" data-toggle="modal" >Estad&iacute;sticas</a>
+			</div>
+			
+		</div>
+		
+	</div>
+	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3 id="myModalLabel">Estad&iacute;sticas</h3>
+		</div>
+		<div class="modal-body">
+			<table class=table>
+				<tr><th>Oferta Mayor</th></tr>
+				<tr><td id="maQ">hola</td><td id="maNom">mundo</td></tr>
+				<tr><th>Oferta Menor</th></tr>
+				<tr><td id="meQ">hola</td><td id="meNom">mundo</td></tr>
+			</table>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+		</div>
+	</div>

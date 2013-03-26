@@ -1,0 +1,376 @@
+La pagina "producto/:codprod"
+pedira 4 cosas al cargarse:
+1.) los datos del producto
+2.) los top 5 ofertados
+3.) el menor ofertado
+4.) total de ofertas
+
+Despues pedira solo las cosas 2.) al 4.)
+render: function(){
+		//this.$el.find('li').remove() // quitar los elementos html anteriores
+		this.collection.forEach(this.addOne, this)
+	}
+	<!-- Carousel
+	================================================== -->
+	<section id="carousel">
+	<div class="page-header">
+		<h1>Carousel <small>bootstrap-carousel.js</small></h1>
+	</div>
+
+	<h2>Example carousel</h2>
+	<p>The slideshow below shows a generic plugin and component for cycling through elements like a carousel.</p>
+	<div class="bs-docs-example">
+	  <div id="myCarousel" class="carousel slide">
+		<div class="carousel-inner">
+		  <div class="item active">
+			<img src="assets/img/bootstrap-mdo-sfmoma-01.jpg" alt="">
+			<div class="carousel-caption">
+			  <h4>First Thumbnail label</h4>
+			  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+			</div>
+		  </div>
+		  <div class="item">
+			<img src="assets/img/bootstrap-mdo-sfmoma-02.jpg" alt="">
+			<div class="carousel-caption">
+			  <h4>Second Thumbnail label</h4>
+			  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+			</div>
+		  </div>
+		  <div class="item">
+			<img src="assets/img/bootstrap-mdo-sfmoma-03.jpg" alt="">
+			<div class="carousel-caption">
+			  <h4>Third Thumbnail label</h4>
+			  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+			</div>
+		  </div>
+		</div>
+		<a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+		<a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+	  </div>
+	</div>
+<pre class="prettyprint linenums">
+&lt;div id="myCarousel" class="carousel slide"&gt;
+&lt;!-- Carousel items --&gt;
+&lt;div class="carousel-inner"&gt;
+&lt;div class="active item"&gt;…&lt;/div&gt;
+&lt;div class="item"&gt;…&lt;/div&gt;
+&lt;div class="item"&gt;…&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- Carousel nav --&gt;
+&lt;a class="carousel-control left" href="#myCarousel" data-slide="prev"&gt;&amp;lsaquo;&lt;/a&gt;
+&lt;a class="carousel-control right" href="#myCarousel" data-slide="next"&gt;&amp;rsaquo;&lt;/a&gt;
+&lt;/div&gt;
+</pre>
+
+	<div class="alert alert-warning">
+	  <strong>Heads up!</strong>
+	  When implementing this carousel, remove the images we have provided and replace them with your own.
+	</div>
+
+
+	<hr class="bs-docs-separator">
+
+
+	<h2>Usage</h2>
+
+	<h3>Via data attributes</h3>
+	<p>...</p>
+
+	<h3>Via JavaScript</h3>
+	<p>Call carousel manually with:</p>
+	<pre class="prettyprint linenums">$('.carousel').carousel()</pre>
+
+	<h3>Options</h3>
+	<p>Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code>data-</code>, as in <code>data-interval=""</code>.</p>
+	<table class="table table-bordered table-striped">
+	  <thead>
+	   <tr>
+		 <th style="width: 100px;">Name</th>
+		 <th style="width: 50px;">type</th>
+		 <th style="width: 50px;">default</th>
+		 <th>description</th>
+	   </tr>
+	  </thead>
+	  <tbody>
+	   <tr>
+		 <td>interval</td>
+		 <td>number</td>
+		 <td>5000</td>
+		 <td>The amount of time to delay between automatically cycling an item. If false, carousel will not automatically cycle.</td>
+	   </tr>
+	   <tr>
+		 <td>pause</td>
+		 <td>string</td>
+		 <td>"hover"</td>
+		 <td>Pauses the cycling of the carousel on mouseenter and resumes the cycling of the carousel on mouseleave.</td>
+	   </tr>
+	  </tbody>
+	</table>
+
+	<h3>Methods</h3>
+	<h4>.carousel(options)</h4>
+	<p>Initializes the carousel with an optional options <code>object</code> and starts cycling through items.</p>
+<pre class="prettyprint linenums">
+$('.carousel').carousel({
+interval: 2000
+})
+</pre>
+	<h4>.carousel('cycle')</h4>
+	<p>Cycles through the carousel items from left to right.</p>
+	<h4>.carousel('pause')</h4>
+	<p>Stops the carousel from cycling through items.</p>
+	<h4>.carousel(number)</h4>
+	<p>Cycles the carousel to a particular frame (0 based, similar to an array).</p>
+	<h4>.carousel('prev')</h4>
+	<p>Cycles to the previous item.</p>
+	<h4>.carousel('next')</h4>
+	<p>Cycles to the next item.</p>
+
+	<h3>Events</h3>
+	<p>Bootstrap's carousel class exposes two events for hooking into carousel functionality.</p>
+	<table class="table table-bordered table-striped">
+	  <thead>
+	   <tr>
+		 <th style="width: 150px;">Event</th>
+		 <th>Description</th>
+	   </tr>
+	  </thead>
+	  <tbody>
+	   <tr>
+		 <td>slide</td>
+		 <td>This event fires immediately when the <code>slide</code> instance method is invoked.</td>
+	   </tr>
+	   <tr>
+		 <td>slid</td>
+		 <td>This event is fired when the carousel has completed its slide transition.</td>
+	   </tr>
+	  </tbody>
+	</table>
+  </section>
+
+
+
+  <!-- Typeahead
+  ================================================== -->
+  <section id="typeahead">
+	<div class="page-header">
+	  <h1>Typeahead <small>bootstrap-typeahead.js</small></h1>
+	</div>
+
+
+	<h2>Example</h2>
+	<p>A basic, easily extended plugin for quickly creating elegant typeaheads with any form text input.</p>
+	<div class="bs-docs-example" style="background-color: #f5f5f5;">
+	  <input type="text" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
+	</div>
+	<pre class="prettyprint linenums">&lt;input type="text" data-provide="typeahead"&gt;</pre>
+
+
+	<hr class="bs-docs-separator">
+
+
+/*var mongo = require('mongodb')
+var Server = mongo.Server,
+    Db = mongo.Db,
+    BSON = mongo.BSONPure,
+    ObjectID = mongo.BSONPure.BSON.ObjectID
+var host = "192.168.1.130", port = mongo.Connection.DEFAULT_PORT // suele ser 27017
+var server = new Server(host, port, {auto_reconnect: true});
+var db = new Db('productodb', server);*/
+
+/**var mongoose = require('mongoose');
+mongoose.connect('mongodb://192.168.1.130/productodb');
+**/
+
+
+<div class="alert alert-block alert-error fade in hide">
+	<a class="close" data-dismiss="alert" href="#">×</a>
+	<h4 class="alert-heading">Oh snap! You got an error!</h4>
+	<p>The server seems to be down :(</p>
+</div>
+
+// if errors on websocket
+
+var onalert = function(event) {
+
+$(".alert").removeClass("hide");
+
+}
+
+ 
+
+mapSocket.onerror = onalert;
+
+mapSocket.onclose = onalert;
+
+virtual maching manager
+modificar xen.conf
+
+
+window.setInterval(yourfunction, 5000);
+
+function yourfunction() { console.log('pedir recursos'); }
+
+function type(obj){//http://stackoverflow.com/questions/332422/how-do-i-get-the-name-of-an-objects-type-in-javascript
+		return Object.prototype.toString.call(obj).match(/^\[object (.*)\]$/)[1]
+}
+
+
+
+//producto.js
+jQuery(document).ready(function () {
+	var ProductoItem = Backbone.Model.extend({});
+	var BidItem = Backbone.Model.extend({
+		defaults: {bid:'0.25', nombre:'Anonimo'},
+		/*changeName: function(e){
+			this.set({nombre: e.srcElement.value})
+		},*/
+		sendNewBid: function(newBid){
+			this.set({bid: newBid})
+			socket.emit('newBid', productoItem.get('codprod'), this.toJSON())
+			this.set({bid:'0.25'}) // valor default
+			window.setTimeout(function() {
+				$(".alert").addClass("hide")
+			}, 3000)
+			$(".alert").removeClass("hide")
+		}
+	});
+	
+	var productoItem = new ProductoItem(
+		{codprod:jQuery('#codprod').val(), nombre:'', descripcion:'pickup milk', foto:'', bids:[]}
+	),
+	bidItem = new BidItem()
+	
+	var BidList = Backbone.Collection.extend({model: BidItem})
+	var bidList = new BidList()
+	
+	var ProductoView = Backbone.View.extend({
+		el: $('#producto-view'),
+		
+		//id: 'producto-view',
+		//className: 'span5',
+		template: _.template('<legend><%= nombre%></legend><br>' + 
+		'Descripci&oacuten: <blockquote><p class="lead"><%= descripcion%></p></blockquote>' + 
+		'<img src="<%= foto%>" class="img-polaroid"/>'),
+		events: {
+			"click h3": "alertStatus"
+		},
+		alertStatus: function(e){
+			alert('Hey you clicked the h3!')
+		},
+		render: function(){
+			var attributes = this.model.toJSON()
+			this.$el.html(this.template(attributes))
+			bidList.reset(attributes.bids)
+			document.title = attributes.nombre + document.title; // cambiamos el titulo
+			/*attributes.bids.forEach(function(bid){
+				abidItem = new BidItem(bid)
+				console.log(JSON.stringify(abidItem))
+				bidList.add(abidItem)
+			})*/
+		}
+	}), BidView = Backbone.View.extend({
+		el: $('#bid-view'),
+		//id: 'bid-view',
+		//className: 'span1',
+		template: _.template(
+			'<legend>Haga su oferta</legend>' + 
+			'<span class="add-on">Tu Nombre</span><input type=text value="<%= nombre%>" placeholder="Tu nombre." /><br>'+
+			'<span class="add-on">Q</span><input type=number value="<%= bid%>" min="0.25" max="300" placeholder="Ingrese un monto en Q." />'+
+			'<button class="btn btn-primary" type="button">Go!</button>'
+		),
+		events: {
+			//"keyup input[type=text]": "changeName",
+			"keypress input[type=number]": "sendNewBid",
+			"click button.btn": "sendNewBid"
+		},
+		initialize: function(){
+			this.model.on('change', this.render, this)
+			this.model.on('destroy', this.remove, this)
+		},
+		/*changeName: function(e){
+			this.model.changeName(e)
+		},*/
+		sendNewBid: function(e){
+			if (e.which == 13) {
+				this.model.sendNewBid(e.srcElement.value)
+			} else if (e.type === 'click') {
+				this.model.sendNewBid($('input[type=number]').val())
+			}
+		},
+		render: function(){
+			this.$el.html(this.template(this.model.toJSON()))
+		},
+		remove: function(){
+			this.$el.remove()
+		}	
+	}), BidsView = Backbone.View.extend({
+		tagName: 'li',
+		//id: 'bid-view',
+		//className: 'span1',
+		template: _.template(
+			//'<input type=text value="<%= nombre%>" readonly />'+
+			//'<input type=text value="<%= bid%>" readonly />'
+			//'<div clas="row-fluid"><div class=span6><%= nombre%>"</div>'+
+			//'<div class="span6"><%= bid%></div></div>'
+			'<p class="text-info"><%= nombre%>: Q.<%= bid%>'
+		),
+		render: function(){
+			this.$el.html(this.template(this.model.toJSON()))
+			return this
+		}
+	}), BidsListView = Backbone.View.extend({
+		el: $('#bids-view'),
+		initialize: function(){
+			this.collection.on('add', this.addOne, this)
+		},
+		addOne: function(bidsItem){
+			var bidsView = new BidsView({model: bidsItem})
+			this.$el.append(bidsView.render().el)
+		},
+		render: function(){
+			this.collection.forEach(this.addOne, this)
+		}
+	})
+	
+	var productoView = new ProductoView({model: productoItem}),
+	bidsListView = new BidsListView({collection: bidList}),
+	bidView = new BidView({model: bidItem})
+	
+	
+	var log_chat_message = function  (usr, bid) {
+		var li = jQuery('<li />').text(usr + ': Q' + bid);
+		/*if (type === 'system') {
+			li.css({'font-weight': 'bold'});
+		} else if (type === 'leave' || type === 'error') {
+			li.css({'font-weight': 'bold', 'color': '#F00'});
+		}*/
+		jQuery('#bid_log').append(li);
+	};
+	var socket = io.connect('/bids')
+	socket.emit('conn', {codprod:productoItem.get('codprod')})
+	
+	socket.on('entrance', function  (data) {
+		productoItem.set(data) // datos del producto, 'productoItem' ya esta relacionado con 'productoView'
+		productoView.render() // unica llamada a render
+		bidsListView.render() // unica llamada a render, 'birdsList' se inicializo en la llamada 'render' anterior
+		bidView.render()  // renderizar los controles del usuario
+	});
+
+	/*socket.on('exit', function  (data) {
+		log_chat_message(data.message, 'leave');
+	});*/
+	socket.on('error', function  (data) {
+		log_chat_message(data.message, 'error');
+	});
+	
+	socket.on('nuevobid', function  (data) {
+		log_chat_message(data.usr, data.bid);
+	});
+})
+function type(obj){//http://stackoverflow.com/questions/332422/how-do-i-get-the-name-of-an-objects-type-in-javascript
+		return Object.prototype.toString.call(obj).match(/^\[object (.*)\]$/)[1]
+}
+window.setInterval(yourfunction, 5000);
+
+function yourfunction() { console.log('pedir recursos'); }
