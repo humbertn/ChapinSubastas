@@ -7,8 +7,8 @@ var express = require('express')
   , io = require('socket.io')
   , routes = require('./routes')
   , productos = require('./productos')
-  , chatter = require('chatter')
-  
+//  , chatter = require('chatter')
+
 
 /*var cluster = require('cluster')
 var numCPUs = require('os').cpus().length
@@ -25,16 +25,16 @@ if (cluster.isMaster){
 //io.set('log level', 1)
 var app = module.exports = express.createServer()
 	, chat_room = io.listen(app, {log:false})
-	
-sockets = chat_room.of("/chats")
-chatter.set_sockets(sockets)
 
-sockets.on('connection', function (socket) {
-  chatter.connect_chatter({
-	socket: socket,
-	username: socket.id
-  })
-})
+//sockets = chat_room.of("/chats")
+//chatter.set_sockets(sockets)
+
+//sockets.on('connection', function (socket) {
+//  chatter.connect_chatter({
+//	socket: socket,
+//	username: socket.id
+//  })
+//})
 
 sockets = chat_room.of("/principal")
 sockets.on('connection', function(socket){

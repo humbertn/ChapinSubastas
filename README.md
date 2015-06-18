@@ -1,22 +1,19 @@
-ChapinSubastas
-==============
+# ChapinSubastas
 
-Sitio de apostar articulos a la venta. Desarrollado durante el mes diciembre 2012 como proyecto del curso Sistemas Operativos 1. Utiliza Node.js, mongo, backbone.
-
-crear el proyecto:
-	npm init
-	o
-	express -t ejs live-site
-
-Atentender las dependencias:
-	sudo npm install calipso -g
-	npm install
-
-Actualizar los modulos instalados en el folder
-	npm update
-
-Actualizar los modulos del sistema
-	npm update -g
-
-Remover Modulos no utilizados
-	npm prune
+Sitio de apostar articulos a la venta.
+Diciembre 2012 - Sistemas Operativos 1.
+Node.js, mongo, backbone
+# Setup
+## Dependencies
+Install calipso
+```bash
+npm install calipso -g
+```
+Download dependencies
+```bash
+npm install
+```
+## Run
+```bash
+npm start
+```

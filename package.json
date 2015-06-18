@@ -5,6 +5,7 @@
   "description": "Proyecto Sopes. USAC. Guatemala Diciembre 2012.",
   "main": "index.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

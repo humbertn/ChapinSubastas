@@ -1,6 +1,6 @@
 var mongoose = require('mongoose')
-mongoose.connect("mongodb://192.168.122.172/chapinsubastas") // 192.168.128.1272:17
-//mongoose.connect("mongodb://localhost/chapinsubastas") // 192.168.128.1272:17
+//mongoose.connect("mongodb://192.168.122.172/chapinsubastas") // 192.168.128.1272:17
+mongoose.connect("mongodb://localhost/chapinsubastas") // 192.168.128.1272:17
 
 var Schema = mongoose.Schema
 
@@ -23,14 +23,19 @@ var Oferta_Model = mongoose.model('ofertas', BIDS_Schema)
 
 exports.connect_principal = function (socket) {
 	stock = function(){
-		
-		Oferta_Model.aggregate( // visto en http://docs.mongodb.org/manual/tutorial/aggregation-examples/
-			{ $group: {_id: '$codprod', conteo: {$sum: 1}} },
-			{ 	$project: {_id:0, codprod:1, conteo:1}, 
-				$sort: {conteo:-1}
-			},
-			{	$limit: 5	},
+
+		Oferta_Model.aggregate(
+			[
+				{ $group: {_id: '$codprod', conteo: {$sum: "$bid"}} },
+				{ $project: {_id:0, codprod:1, conteo:1} },
+				{ $sort: {conteo: -1} },
+				{ $limit: 5 }
+			],
 			function(err, res){
+				if (err){
+					console.log(JSON.stringify(err));
+					return;
+				}
 				for (var i = 0; i < 5; i ++){
 					Producto_Model.find({codprod: res[i]._id}, {_id:0, descripcion:0, fecha:0}, function(err, topXProd){
 						socket.emit('stockProd', topXProd[0])
@@ -42,10 +47,10 @@ exports.connect_principal = function (socket) {
 				})
 			}
 		)
-		
-	}
-	stock()
-	socket.on('restock', stock)
+
+	};
+	stock();
+	socket.on('restock', stock);
 }
 exports.connect_producto = function  (socket) {
 	socket.on('conn', function(params){
@@ -54,10 +59,10 @@ exports.connect_producto = function  (socket) {
 		var consulta_menorBid = Oferta_Model.find({codprod:params.codprod}, {_id:0, codprod:0}).sort('bid').limit(1)
 		var consulta_count = Oferta_Model.find({codprod:params.codprod}).count()
 		/*
-		 * enviar 4 cosas en este orden: 
+		 * enviar 4 cosas en este orden:
 		 * 1.) el producto como objeto, 5
-		 * 2.) los top 5 bid (ofertados) como vector (si es necesario), 
-		 * 3.) el menor bid (ofertado) como objeto, 
+		 * 2.) los top 5 bid (ofertados) como vector (si es necesario),
+		 * 3.) el menor bid (ofertado) como objeto,
 		 * 4.) y el tamano de bids (numero total de ofertados) como entero
 		 * */
 		consulta_producto.exec(function(err, docs){
@@ -68,26 +73,26 @@ exports.connect_producto = function  (socket) {
 					consulta_menorBid.exec(function(err, menorBid){
 						consulta_count.exec(function(err, count){
 							socket.emit('cargaProducto', {
-								producto:docs[0], 
+								producto:docs[0],
 								top5Bids: top5Bids,
-								menorBid: menorBid[0], 
+								menorBid: menorBid[0],
 								totalBids: count
 							})
 						})
 					})
-				})	
-			}	
+				})
+			}
 		})
-		
+
 	})
 	socket.on('restock', function(params){
 		var consulta_top5Bids = Oferta_Model.find({codprod:params.codprod}, {_id:0, codprod:0}).sort('-bid').limit(5)
 		var consulta_menorBid = Oferta_Model.find({codprod:params.codprod}, {_id:0, codprod:0}).sort('bid').limit(1)
 		var consulta_count = Oferta_Model.find({codprod:params.codprod}).count()
 		/*
-		 * enviar 4 cosas en este orden: 
-		 * 2.) los top 5 bid (ofertados) como vector (si es necesario), 
-		 * 3.) el menor bid (ofertado) como objeto, 
+		 * enviar 4 cosas en este orden:
+		 * 2.) los top 5 bid (ofertados) como vector (si es necesario),
+		 * 3.) el menor bid (ofertado) como objeto,
 		 * 4.) y el tamano de bids (numero total de ofertados) como entero
 		 * */
 		consulta_top5Bids.exec(function(err, top5Bids){
@@ -98,14 +103,14 @@ exports.connect_producto = function  (socket) {
 					consulta_count.exec(function(err, count){
 						socket.emit('restocked', {
 							top5Bids: top5Bids,
-							menorBid: menorBid[0], 
+							menorBid: menorBid[0],
 							totalBids: count
 						})
 					})
 				})
 			}
 		})
-		
+
 	})
 	socket.on('newOferta', function  (codprod, data) {
 		//console.log("bid de id", codprod)
